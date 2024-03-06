@@ -1,0 +1,73 @@
+<odoo>
+    <record id="patient_tree_view" model="ir.ui.view">
+        <field name="name">patient.tree.view</field>
+        <field name="model">hms.patient</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="f_name"/>
+                <field name="l_name"/>
+                <field name="age"/>
+                <field name="b_type"/>
+                <field name="pcr"/>
+                <field name="cr_ratio"/>
+                <field name="department_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="patient_form_view" model="ir.ui.view">
+        <field name="name">patient.form.view</field>
+        <field name="model">hms.patient</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="General Info.">
+                            <field name="f_name"/>
+                            <field name="l_name"/>
+                            <field name="age"/>
+                            <field name="b_type"/>
+                            <field name="pcr"/>
+                            <field name="cr_ratio"/>
+                            <field name="department_id"/>
+                        </group>
+                        <group string="Additional Info.">
+                            <field name="b_date"/>
+                            <field name="history"/>
+                            <field name="image"/>
+                            <field name="address"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Doctors">
+                            <field name="doctor_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="patient_search_view" model="ir.ui.view">
+        <field name="name">patient.search.view</field>
+        <field name="model">hms.patient</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="f_name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="hms_patient_action" model="ir.actions.act_window">
+        <field name="name">HMS Patient</field>
+        <field name="res_model">hms.patient</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="menuitem_hms_patient"
+              name="Patients"
+              parent="menu_root_patient"
+              action="hms_patient_action"/>
+
+</odoo>
