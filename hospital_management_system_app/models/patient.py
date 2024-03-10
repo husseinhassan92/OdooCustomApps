@@ -32,6 +32,7 @@ class Patient(models.Model):
     email = fields.Char("Email")
     age = fields.Integer("Age", compute='compute_age')
     department_id = fields.Many2one("hms.department", string="Department")
+    department_capacity = fields.Integer(related="department_id.capacity", string="Department Capacity")
     doctor_ids = fields.Many2many("hms.doctor", string="Doctors")
     line_ids = fields.One2many('hms.patient.line', 'patient_id')
 

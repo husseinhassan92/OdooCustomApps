@@ -58,6 +58,7 @@
                             <field name="history" invisible="age &lt; 50" />
                             <field name="image" />
                             <field name="address" />
+                            <field name="department_capacity" />
                         </group>
                     </group>
                     <notebook>
