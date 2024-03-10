@@ -1,2 +1,5 @@
-# Odoo Custom Apps
-## To Do APP
+# Odoo Custom Addons
+
+## Hospital Management System Addons
+
+## To Do Addons
