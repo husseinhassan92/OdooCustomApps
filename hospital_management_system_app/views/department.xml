@@ -4,9 +4,9 @@
         <field name="model">hms.department</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name"/>
-                <field name="capacity"/>
-                <field name="is_opened"/>
+                <field name="name" />
+                <field name="capacity" />
+                <field name="is_opened" />
             </tree>
         </field>
     </record>
@@ -18,13 +18,13 @@
             <form>
                 <sheet>
                     <group string="General Info.">
-                        <field name="name"/>
-                        <field name="capacity"/>
-                        <field name="is_opened"/>
+                        <field name="name" />
+                        <field name="capacity" />
+                        <field name="is_opened" />
                     </group>
                     <notebook>
                         <page string="Patients">
-                            <field name="patient_ids"/>
+                            <field name="patient_ids" />
                         </page>
                     </notebook>
                 </sheet>
@@ -37,7 +37,7 @@
         <field name="model">hms.department</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name"/>
+                <field name="name" />
             </search>
         </field>
     </record>
@@ -50,8 +50,7 @@
 
 
     <menuitem id="menuitem_hms_department"
-              name="Departments"
-              parent="menu_root_department"
-              action="hms_department_action"/>
-
+        name="Departments"
+        parent="menu_root_department"
+        action="hms_department_action" />
 </odoo>

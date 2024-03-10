@@ -1,18 +1,17 @@
 <odoo>
     <menuitem id="menu_hms"
-              name="HMS"
-              web_icon="hospital_management_system_app,static/description/icon.png"/>
+        name="HMS"
+        web_icon="hospital_management_system_app,static/description/icon.png" />
 
     <menuitem id="menu_root_patient"
-              name="Patients"
-              parent="menu_hms"/>
+        name="Patients"
+        parent="menu_hms" />
 
     <menuitem id="menu_root_department"
-              name="Departments"
-              parent="menu_hms"/>
+        name="Departments"
+        parent="menu_hms" />
 
     <menuitem id="menu_root_doctor"
-              name="Doctors"
-              parent="menu_hms"/>
-
+        name="Doctors"
+        parent="menu_hms" />
 </odoo>

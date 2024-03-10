@@ -4,13 +4,14 @@
         <field name="model">hms.patient</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="f_name"/>
-                <field name="l_name"/>
-                <field name="age"/>
-                <field name="b_type"/>
-                <field name="pcr"/>
-                <field name="cr_ratio"/>
-                <field name="department_id"/>
+                <field name="f_name" />
+                <field name="l_name" />
+                <field name="age" />
+                <field name="b_type" />
+                <field name="pcr" />
+                <field name="cr_ratio" />
+                <field name="state" />
+                <field name="department_id" />
             </tree>
         </field>
     </record>
@@ -20,27 +21,54 @@
         <field name="model">hms.patient</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_add_log" type="object" string="Add Log"
+                        class="btn-primary" />
+                    <button name="action_undetermined" type="object" string="undetermined"
+                        class="btn btn-info" invisible="state != False" />
+                    <button name="action_serious" type="object" string="Serious"
+                        class="btn btn-danger" invisible="state not in ('fair', 'undetermined')" />
+                    <button name="action_fair" type="object" string="Fair"
+                        class="btn btn-warning"
+                        invisible="state not in ('good','serious', 'undetermined')" />
+                    <button name="action_good" type="object" string="Good"
+                        class="btn btn-success" invisible="state not in ('fair', 'undetermined')" />
+
+                    <field name="state" widget="statusbar"
+                        statusbar_visible="undetermined,serious,fair,good" />
+                </header>
                 <sheet>
                     <group>
                         <group string="General Info.">
-                            <field name="f_name"/>
-                            <field name="l_name"/>
-                            <field name="age"/>
-                            <field name="b_type"/>
-                            <field name="pcr"/>
-                            <field name="cr_ratio"/>
-                            <field name="department_id"/>
+                            <field name="f_name" />
+                            <field name="l_name" />
+                            <field name="age" />
+                            <field name="b_type" />
+                            <field name="pcr" />
+                            <field name="cr_ratio" />
+                            <field name="state" />
+                            <field name="department_id" domain="[('is_opened', '=', True)]" />
+                            <field name="doctor_ids" widget="many2many_tags"
+                                readonly="department_id == False"
+                                groups="hospital_management_system_app.hms_manager_group" />
                         </group>
                         <group string="Additional Info.">
-                            <field name="b_date"/>
-                            <field name="history"/>
-                            <field name="image"/>
-                            <field name="address"/>
+                            <field name="b_date" />
+                            <field name="email" />
+                            <field name="history" invisible="age &lt; 50" />
+                            <field name="image" />
+                            <field name="address" />
                         </group>
                     </group>
                     <notebook>
-                        <page string="Doctors">
-                            <field name="doctor_ids"/>
+                        <page string="Log">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="created_by" />
+                                    <field name="date" />
+                                    <field name="description" />
+                                </tree>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>
@@ -53,7 +81,7 @@
         <field name="model">hms.patient</field>
         <field name="arch" type="xml">
             <search>
-                <field name="f_name"/>
+                <field name="f_name" />
             </search>
         </field>
     </record>
@@ -66,8 +94,7 @@
 
 
     <menuitem id="menuitem_hms_patient"
-              name="Patients"
-              parent="menu_root_patient"
-              action="hms_patient_action"/>
-
+        name="Patients"
+        parent="menu_root_patient"
+        action="hms_patient_action" />
 </odoo>
